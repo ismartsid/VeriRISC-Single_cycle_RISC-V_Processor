@@ -16,7 +16,6 @@ module decode import yarp_pkg::*;
   output  logic [31:0]  instr_imm_o
 );
 
-  // Write your logic here...
  assign op_o = instr_i [6:0];
  assign rs1_o = instr_i [19:15];
  assign	rs2_o = instr_i [24:20];
