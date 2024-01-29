@@ -26,7 +26,6 @@ module decode import risc_pkg::*;
                           U2 = 7'b0110111,
                           J = 7'b1101111} riscv_op;
                           */
-  // Write your logic here...
  assign op_o = instr_i [6:0];
  assign rs1_o = instr_i [19:15];
  assign	rs2_o = instr_i [24:20];
