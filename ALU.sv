@@ -20,8 +20,7 @@ module execute import risc_pkg::*; (
 								XOR_op,
 								LT_op,
                 SLT_op} ALU_op;
-  */
-  
+  */  
   always_comb
     begin
   		case(op_sel_i)
