@@ -34,4 +34,11 @@ package yarp_pkg;
                            Halfword_Access,
                            Reserved,
                            Word_Access} mem_encode;
+
+    typedef enum logic [2:0]{    BEQ  = 3'h0,
+    			   BNE  = 3'h1,
+    			   BLT  = 3'h4,
+    			   BGE  = 3'h5,
+    			   BLTU = 3'h6,
+    			   BGEU = 3'h7} branch;
 endpackage
