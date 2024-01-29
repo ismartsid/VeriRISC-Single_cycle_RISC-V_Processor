@@ -16,6 +16,8 @@ module regfile (
   output  logic [31:0]   rs2_data_o
 );
 
+  logic [31:0] regfile  [31:0];
+
   always @(posedge clk or negedge reset_n)
     begin
       if (!reset_n)
@@ -42,5 +44,4 @@ module regfile (
       rs1_data_o = regfile [rs1_addr_i];
       rs2_data_o = regfile [rs2_addr_i];
     end
-  
 endmodule
