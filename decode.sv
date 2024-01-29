@@ -16,6 +16,17 @@ module decode import risc_pkg::*;
   output  logic [31:0]  instr_imm_o
 );
 
+/*  typedef enum logic[6:0]{ R = 7'b0110011, 
+                          I1 = 7'b0000011, 
+                          I2 = 7'b0010011,
+                          I3 = 7'b1100111 ,
+                          S = 7'b0100011 ,
+                          B = 7'b1100011,
+                          U1 = 7'b0010111,
+                          U2 = 7'b0110111,
+                          J = 7'b1101111} riscv_op;
+                          */
+  // Write your logic here...
  assign op_o = instr_i [6:0];
  assign rs1_o = instr_i [19:15];
  assign	rs2_o = instr_i [24:20];
