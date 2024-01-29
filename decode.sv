@@ -1,4 +1,4 @@
-module decode import yarp_pkg::*; 
+module decode import risc_pkg::*; 
   (
   input   logic [31:0]  instr_i,
   output  logic [4:0]   rs1_o,
