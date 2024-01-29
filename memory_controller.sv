@@ -24,6 +24,7 @@ module data_mem import risc_pkg::*; (
   output  logic [31:0]    data_mem_rd_data_o
 );
 
+  // Write your logic here...
   assign data_mem_req_o = data_req_i;
 	assign data_mem_addr_o = data_addr_i;
   assign data_mem_byte_en_o = data_byte_en_i;
