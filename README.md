@@ -1,7 +1,7 @@
 # Single Cycle RISC-V Processor
 
 ## Overview
-This project is a 32-bit Single Cycle CPU that follows the RISC-V Instruction Set Architecture(ISA). It's built-in SystemVerilog and is based on the RV32I implementation outlined in the [RISC-V Instruction Set Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf). The primary purpose of this project is for hobby and educational use.
+This project is a 32-bit Single Cycle CPU that follows the RISC-V Instruction Set Architecture(ISA). It's written in SystemVerilog and is based on the RV32I implementation outlined in the [RISC-V Instruction Set Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf). The primary purpose of this project is for hobby and educational use.
 
 ### Modules
 
