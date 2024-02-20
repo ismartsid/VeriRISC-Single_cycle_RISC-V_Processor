@@ -1,7 +1,7 @@
 # Single Cycle RISC-V Processor
 
 ## Overview
-This repository contains the Verilog implementation of a single-cycle RISC-V processor Based on RV32I. In this design, each instruction executes within a single clock cycle. The processor consists of the following modules:
+This project is an implementation of a Single Cycle CPU utilizing the RISC-V ISA. The design is based on the RV32I implementation as outlined in the RISC-V Instruction Set Manual. Therefore making this a 32-bit CPU, written all in Verilog. This project was mostly made for a hobby and educational purposes.
 
 1. **riscv_branch_control.sv**
    - Determines whether a branch instruction is taken or not.
