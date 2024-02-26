@@ -1,24 +1,20 @@
-
 module riscv_instr_mem (
-  input    logic          clk,
-  input    logic          reset_n,
+  input    logic          clk, //CLock Input
+  input    logic          reset_n, //Reset
 
-  input    logic [31:0]   instr_mem_pc_i,
+  input    logic [31:0]   instr_mem_pc_i, //Current Program Counter Value
 
-  // Output read request to memory
-  output   logic          instr_mem_req_o,
-  output   logic [31:0]   instr_mem_addr_o,
+  output   logic          instr_mem_req_o, //Request for next Instruction
+  output   logic [31:0]   instr_mem_addr_o, //Instruction address
 
-  // Read data from memory
-  input    logic [31:0]   mem_rd_data_i,
+  input    logic [31:0]   mem_rd_data_i, //32-bit Instruction
 
-  // Instruction output
-  output   logic [31:0]   instr_mem_instr_o
+  output   logic [31:0]   instr_mem_instr_o ////32-bit Instruction output to Decode Stage
 );
 
   always_ff @(posedge clk or negedge reset_n)
     begin
-      if (reset_n == 0)
+      if (reset_n == 0) //Requesting new instruction in every clock cycle
         instr_mem_req_o <= 0;
       else 
         instr_mem_req_o <= 1;
