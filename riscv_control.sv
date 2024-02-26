@@ -11,7 +11,7 @@ module riscv_control import riscv_pkg::*; (
   	input   logic         instr_funct7_bit5_i, //Funct-7 bit 5 from the instruction
 	input   logic [6:0]   instr_opcode_i, //Instruction Op-code
 
-  	output  logic         pc_sel_o, //seclect signal for next PC
+  	output  logic         pc_sel_o, //select signal for next PC
   	output  logic         op1sel_o, //select signal for RS1
   	output  logic         op2sel_o, //select signal for RS2
 	output  logic [3:0]   alu_func_o, //Output to ALU to choose the type of operation
@@ -19,7 +19,7 @@ module riscv_control import riscv_pkg::*; (
   	output  logic         data_req_o, //Requesting Data memory 
 	output  logic [1:0]   data_byte_o, //Byte enable
   	output  logic         data_wr_o, //Data Memory write enable
-	output  logic         zero_extnd_o, //zero extenstion
+	output  logic         zero_extnd_o, //zero extend the data
   	output  logic         rf_wr_en_o //register file write enable
 );
 	
@@ -62,40 +62,39 @@ module riscv_control import riscv_pkg::*; (
       		control_i = 'b0;
       		control_i.op2sel = 1'b1;
      		control_i.rf_wr_en = 1'b1;
-      		if ((instr_opcode_i == I3)) begin
+		if ((instr_opcode_i == I3)) begin //For JALR Instruction
         		control_i.rf_wr_data = PC;
         		control_i.pc_sel = 1'b1;
         		control_i.alu_func = ADD_op;
       		end
       		else begin
                 	case(i_cntr)
-        			ADDI: control_i.alu_func = ADD_op;
-				SLTI: control_i.alu_func = LT_op;
-				SLTIU:control_i.alu_func = SLT_op;
-				XORI: control_i.alu_func = XOR_op;
- 				ORI:  control_i.alu_func = OR_op;
-				ANDI: control_i.alu_func = AND_op;
-				SLLI: control_i.alu_func = SLL_op;
-				SRXI: control_i.alu_func = instr_funct7_bit5_i ? SRA_op:SRL_op;
+        			ADDI: control_i.alu_func = ADD_op; //ADD Operation
+				SLTI: control_i.alu_func = LT_op; //LESS THAN Operation
+				SLTIU:control_i.alu_func = SLT_op; //LESS THAN Operation (Signed)
+				XORI: control_i.alu_func = XOR_op; //XOR Operation
+ 				ORI:  control_i.alu_func = OR_op; //OR Operation
+				ANDI: control_i.alu_func = AND_op; //AND Operation
+				SLLI: control_i.alu_func = SLL_op; //LOGICAL SHIFT LEFT Operation
+				SRXI: control_i.alu_func = instr_funct7_bit5_i ? SRA_op:SRL_op; // SHIFT RIGHT OPERATION (ARTHEMATIC:LOGICAL)
         
-                		LB:	{control_i.rf_wr_data,
+				LB:	{control_i.rf_wr_data, //LOAD Byte
 					 control_i.data_req,
 					 control_i.data_byte} = {MEM, 1'b1, Byte_Access};
-                		LH:	{control_i.rf_wr_data,
+				LH:	{control_i.rf_wr_data, //LOAD Halfword
 					 control_i.data_req,
 					 control_i.data_byte} = {MEM, 1'b1, Halfword_Access};
-                		LW:	{control_i.rf_wr_data,
+				LW:	{control_i.rf_wr_data, //LOAD Word
 					 control_i.data_req,
 					 control_i.data_byte} = {MEM, 1'b1, Word_Access};
-                		LBU:    {control_i.rf_wr_data,
+				LBU:    {control_i.rf_wr_data, //LOAD Byte Unsigned
 					 control_i.data_req,
 					 control_i.data_byte,
 					 control_i.zero_extnd} = {MEM, 1'b1, Byte_Access, 1'b1};
-                		LHU:    {control_i.rf_wr_data,
+				LHU:    {control_i.rf_wr_data, //LOAD Halfword Unsigned
 					 control_i.data_req,
 					 control_i.data_byte,
 					 control_i.zero_extnd} = {MEM, 1'b1,Halfword_Access, 1'b1};
-
         			default: control_i = 'b0;
       			endcase
         	end
@@ -109,9 +108,9 @@ module riscv_control import riscv_pkg::*; (
       		control_s.data_wr = 1'b1;
       		control_s.data_req = 1'b1;
       		case(instr_funct3_i)
-        		SB: 	control_s.data_byte = Byte_Access;
-        		SH:	control_s.data_byte = Halfword_Access;
-        		SW:	control_s.data_byte = Word_Access;
+        		SB: 	control_s.data_byte = Byte_Access; //STORE Byte
+        		SH:	control_s.data_byte = Halfword_Access; //STORE Halfword
+        		SW:	control_s.data_byte = Word_Access; //STORE word
         		default:	control_s = 'b0;
       		endcase
     	end
@@ -150,7 +149,8 @@ module riscv_control import riscv_pkg::*; (
        			default:	control_u = 'b0;
      		endcase
     	end  
-  
+
+	//Assigning controls based on the type of instruction
   	assign control_out = 	is_r_type_i ? control_r :
 				is_i_type_i ? control_i :
 				is_s_type_i ? control_s :
@@ -158,7 +158,7 @@ module riscv_control import riscv_pkg::*; (
 				is_u_type_i ? control_u :
 				is_j_type_i ? control_j : '0;
   
-  
+  	//Assigning outputs
   	assign pc_sel_o = 	control_out.pc_sel;
   	assign op1sel_o = 	control_out.op1sel;
   	assign op2sel_o = 	control_out.op2sel;
