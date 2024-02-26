@@ -1,4 +1,4 @@
-module riscv_data_mem_control import riscv_pkg::*; (
+module riscv_data_mem_interface import riscv_pkg::*; (
     input   logic           clk, // Clock
     input   logic           reset_n, // Reset
 
