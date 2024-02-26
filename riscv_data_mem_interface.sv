@@ -1,6 +1,4 @@
 module riscv_data_mem_interface import riscv_pkg::*; (
-    //input   logic           clk, // Clock
-    //input   logic           reset_n, // Reset
 
     input   logic           data_req_i, // Input Data Request
     input   logic [31:0]    data_addr_i, // Data Address From Instruction
