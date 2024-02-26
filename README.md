@@ -16,7 +16,7 @@ The block diagram illustrates the key components and their interconnections with
    - Serves as the processor's controller, determining how the processor should operate for each instruction.
 
 3. **riscv_data_mem_interface.sv**
-   - Functions as a memory cinterface, managing communication between the processor and memory. It retrieves data from memory and writes data back to memory.
+   - Functions as a memory interface, managing communication between the processor and memory. It retrieves data from memory and writes data back to memory.
 
 4. **riscv_decode.sv**
    - Decodes instructions and categorizes them into R-type, I-type, S-type, B-type, J-type, and U-type.
