@@ -1,9 +1,12 @@
 # Single Cycle RISC-V Processor
 
 ## Overview
-This project is a 32-bit Single Cycle CPU that follows the RISC-V Instruction Set Architecture(ISA). It's written in SystemVerilog and is based on the RV32I implementation outlined in the [RISC-V Instruction Set Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf). The primary purpose of this project is for hobby and educational use.
+This project is a 32-bit Single Cycle CPU that follows the RISC-V Instruction Set Architecture(ISA). It's written in SystemVerilog and is based on the RV32I implementation outlined in the [RISC-V Instruction Set Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf). This project is mainly meant for learning purposes.
 
-### Modules
+## Block Diagram
+![Untitled 3 P2](https://github.com/ismartsid/VeriRISC-Single_cycle_RISC-V_Processor/assets/85611307/5edcc6e9-2c85-4b71-bc83-133896fd3747)
+
+## Modules
 
 1. **riscv_branch_control.sv**
    - Decides whether a branch instruction should be taken or not.
@@ -11,8 +14,8 @@ This project is a 32-bit Single Cycle CPU that follows the RISC-V Instruction Se
 2. **riscv_control.sv**
    - Serves as the processor's controller, determining how the processor should operate for each instruction.
 
-3. **riscv_data_mem_control.sv**
-   - Functions as a memory controller, managing communication between the processor and memory. It retrieves data from memory and writes data back to memory.
+3. **riscv_data_mem_interface.sv**
+   - Functions as a memory cinterface, managing communication between the processor and memory. It retrieves data from memory and writes data back to memory.
 
 4. **riscv_decode.sv**
    - Decodes instructions and categorizes them into R-type, I-type, S-type, B-type, J-type, and U-type.
