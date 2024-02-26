@@ -34,6 +34,8 @@ This project is a 32-bit Single Cycle CPU that follows the RISC-V Instruction Se
 
 9. **riscv_top.sv**
    - Integrates all the modules to create the complete processor.
+  
+P.S - I will include testbenches shortly.
 
 ## RISC-V Reference
 For a deeper understanding, it's recommended to read the [RISC-V Reference Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf), particularly the sections mentioning the RV32I implementation.
