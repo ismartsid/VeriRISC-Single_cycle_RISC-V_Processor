@@ -158,8 +158,6 @@ module riscv_top import riscv_pkg::*; #(
   	// Data Memory
   	// --------------------------------------------------------
   	riscv_data_mem_interface riscv_data_mem_interface_top (
-    		.clk                      (clk),
-    		.reset_n                  (reset_n),
     		.data_req_i               (data_req),
     		.data_addr_i              (alu_res),
     		.data_byte_en_i           (data_byte),
