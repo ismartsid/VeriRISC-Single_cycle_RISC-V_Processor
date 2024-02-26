@@ -1,20 +1,18 @@
-
-module riscv_decode import riscv_pkg::*; 
-  (
-  input   logic [31:0]  instr_i,
-  output  logic [4:0]   rs1_o,
-  output  logic [4:0]   rs2_o,
-  output  logic [4:0]   rd_o,
-  output  logic [6:0]   op_o,
-  output  logic [2:0]   funct3_o,
-  output  logic [6:0]   funct7_o,
-  output  logic         r_type_instr_o,
-  output  logic         i_type_instr_o,
-  output  logic         s_type_instr_o,
-  output  logic         b_type_instr_o,
-  output  logic         u_type_instr_o,
-  output  logic         j_type_instr_o,
-  output  logic [31:0]  instr_imm_o
+module riscv_decode import riscv_pkg::*; (
+  input   logic [31:0]  instr_i, // Input 32-bit Instruction
+  output  logic [4:0]   rs1_o, // RS1
+  output  logic [4:0]   rs2_o, // RS2
+  output  logic [4:0]   rd_o, // RD
+  output  logic [6:0]   op_o, // Opcode from instruction
+  output  logic [2:0]   funct3_o, // Funct3 from instruction
+  output  logic [6:0]   funct7_o, // Funct7 from instruction
+  output  logic         r_type_instr_o, // Is R-type instruction
+  output  logic         i_type_instr_o, // Is I-type instruction
+  output  logic         s_type_instr_o, // Is S-type instruction
+  output  logic         b_type_instr_o, // Is B-type instruction
+  output  logic         u_type_instr_o, // Is U-type instruction
+  output  logic         j_type_instr_o, // Is J-type instruction
+  output  logic [31:0]  instr_imm_o // Immediate field from instruction
 );
 
  assign op_o = instr_i [6:0];
@@ -99,4 +97,3 @@ module riscv_decode import riscv_pkg::*;
        endcase
     end
 endmodule
-
